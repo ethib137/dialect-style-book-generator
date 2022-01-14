@@ -1,5 +1,4 @@
 import React, {useMemo} from 'react';
-import './App.css';
 import ClayColorPicker from '@clayui/color-picker';
 import ClayLayout from '@clayui/layout';
 import spritemap from './util/spritemap';
@@ -9,7 +8,6 @@ import chroma from 'chroma-js';
 import {ClayIconSpriteContext} from '@clayui/icon';
 
 import useLocalStorage from './hooks/useLocalStorage';
-import "@clayui/css/lib/css/atlas.css";
 import ColorSwatch from './components/ColorSwatch';
 import { actionNeutralColors, actionPrimaryColors, actionSecondaryColors } from './util/action-colors';
 import SideBar from './components/SideBar';
@@ -179,7 +177,6 @@ function App() {
 	}, [errorColor]);
 
 	const chartColors = useMemo(() => {
-		console.log('compute accent colors');
 		const colors = [];
 
 		colors.push({
@@ -206,7 +203,7 @@ function App() {
 
 	const json = useMemo(() => {
 		const json = {};
-		console.log('primaryColors', primaryColors);
+
 		primaryColors.forEach(color => {
 			json[camelCase(color.cssVariableMapping)] = {...color};
 		});
@@ -389,8 +386,6 @@ function App() {
 										const newAccentColors = [...accentColorsSolid];
 
 										newAccentColors[i] = `#${value}`;
-
-										console.log(newAccentColors);
 
 										setAccentColorsSolid(newAccentColors);
 									}}

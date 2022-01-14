@@ -10,6 +10,24 @@ import useLocalStorage from '../hooks/useLocalStorage';
 function DownloadJSON({className, json}) {
 	const [styleBookName, setStyleBookName] = useLocalStorage('styleBookName', 'Dialect');
 
+	const downloadZip = () => {
+		const zip = new JSZip();
+
+		const processedStyleBookName = styleBookName.split(/\s+/).join('-');
+
+		const zipName = `${processedStyleBookName.toLowerCase()}-style-book`;
+
+		const folder = zip.folder(zipName);
+
+		folder.file('frontend-tokens-values.json', JSON.stringify(json));
+		folder.file('style-book.json', JSON.stringify({name: styleBookName, frontendTokensValuesPath: 'frontend-tokens-values.json'}));
+
+		zip.generateAsync({type:"blob"})
+		.then(function (blob) {
+			saveAs(blob, `${zipName}.zip`);
+		});
+	};
+
 	return (
 		<>
 			<ClayForm.Group className={className}>
@@ -23,21 +41,7 @@ function DownloadJSON({className, json}) {
 				/>
 			</ClayForm.Group>
 
-			<ClayButton block={true} displayType="primary" onClick={() => {
-				const zip = new JSZip();
-
-				const zipName = `${styleBookName.split(/\s+/).join('-').toLowerCase()}-style-book`;
-
-				const folder = zip.folder(zipName);
-
-				folder.file('frontend-tokens-values.json', JSON.stringify(json));
-				folder.file('style-book.json', JSON.stringify({name: styleBookName, frontendTokensValuesPath: 'frontend-tokens-values.json'}));
-
-				zip.generateAsync({type:"blob"})
-				.then(function (blob) {
-					saveAs(blob, `${zipName}.zip`);
-				});
-			}}>Download Style Book</ClayButton>
+			<ClayButton block={true} displayType="primary" onClick={downloadZip}>Download Style Book</ClayButton>
 		</>
 	);
 }
