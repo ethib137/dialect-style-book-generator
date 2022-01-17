@@ -1,5 +1,4 @@
 import React, {useMemo} from 'react';
-import ClayColorPicker from '@clayui/color-picker';
 import ClayLayout from '@clayui/layout';
 import spritemap from './util/spritemap';
 import DownloadJSON from './components/DownloadJSON';
@@ -7,6 +6,7 @@ import chroma from 'chroma-js';
 
 import {ClayIconSpriteContext} from '@clayui/icon';
 
+import ValidatedColorPicker from './components/ValidatedColorPicker';
 import useLocalStorage from './hooks/useLocalStorage';
 import ColorSwatch from './components/ColorSwatch';
 import { actionNeutralColors, actionPrimaryColors, actionSecondaryColors } from './util/action-colors';
@@ -267,38 +267,32 @@ function App() {
 
 					<ClayLayout.Row>
 						<ClayLayout.Col size={4}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Primary Color Darkest"
 								name="primaryColorDarkest"
 								onColorsChange={setCustomColors}
 								onValueChange={setPrimaryColorDarkest}
-								showHex={true}
-								title="Primary Color Darkest"
 								value={primaryColorDarkest}
 							/>
 						</ClayLayout.Col>
 						<ClayLayout.Col size={4}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Primary Color"
 								name="primaryColor"
 								onColorsChange={setCustomColors}
 								onValueChange={setPrimaryColor}
-								showHex={true}
-								title="Primary Color"
 								value={primaryColor}
 							/>
 						</ClayLayout.Col>
 						<ClayLayout.Col size={4}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Primary Color Lightest"
 								name="primaryColorLightest"
 								onColorsChange={setCustomColors}
 								onValueChange={setPrimaryColorLightest}
-								showHex={true}
-								title="Primary Color Lightest"
 								value={primaryColorLightest}
 							/>
 						</ClayLayout.Col>
@@ -306,38 +300,32 @@ function App() {
 
 					<ClayLayout.Row>
 						<ClayLayout.Col size={4}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Secondary Color Darkest"
 								name="secondaryColorDarkest"
 								onColorsChange={setCustomColors}
 								onValueChange={setSecondaryColorDarkest}
-								showHex={true}
-								title="Secondary Color Darkest"
 								value={secondaryColorDarkest}
 							/>
 						</ClayLayout.Col>
 						<ClayLayout.Col size={4}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Secondary Color"
 								name="secondaryColor"
 								onColorsChange={setCustomColors}
 								onValueChange={setSecondaryColor}
-								showHex={true}
-								title="Secondary Color"
 								value={secondaryColor}
 							/>
 						</ClayLayout.Col>
 						<ClayLayout.Col size={4}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Secondary Color Lightest"
 								name="secondaryColorLightest"
 								onColorsChange={setCustomColors}
 								onValueChange={setSecondaryColorLightest}
-								showHex={true}
-								title="Secondary Color Lightest"
 								value={secondaryColorLightest}
 							/>
 						</ClayLayout.Col>
@@ -347,26 +335,22 @@ function App() {
 
 					<ClayLayout.Row>
 						<ClayLayout.Col size={6}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Neutral Color Darkest"
 								name="neutralColorDarkest"
 								onColorsChange={setCustomColors}
 								onValueChange={setNeutralColorDarkest}
-								showHex={true}
-								title="Neutral Color Darkest"
 								value={neutralColorDarkest}
 							/>
 						</ClayLayout.Col>
 						<ClayLayout.Col size={6}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Neutral Color Lightest"
 								name="neutralColorLighest"
 								onColorsChange={setCustomColors}
 								onValueChange={setNeutralColorLightest}
-								showHex={true}
-								title="Neutral Color Lightest"
 								value={neutralColorLightest}
 							/>
 						</ClayLayout.Col>
@@ -377,7 +361,7 @@ function App() {
 					<ClayLayout.Row>
 						{Array(6).fill(0).map((_, i) => (
 							<ClayLayout.Col key={i} size={4}>
-								<ClayColorPicker
+								<ValidatedColorPicker
 									colors={customColors}
 									label={`Accent Color ${i + 1}`}
 									name={`accentColor${i + 1}`}
@@ -389,7 +373,6 @@ function App() {
 
 										setAccentColorsSolid(newAccentColors);
 									}}
-									showHex={true}
 									title={`Accent Color ${i + 1}`}
 									value={accentColorsSolid[i]}
 								/>
@@ -401,50 +384,42 @@ function App() {
 
 					<ClayLayout.Row>
 						<ClayLayout.Col size={3}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Info Color"
 								name="infoColor"
 								onColorsChange={setCustomColors}
 								onValueChange={setInfoColor}
-								showHex={true}
-								title="Info Color"
 								value={infoColor}
 							/>
 						</ClayLayout.Col>
 						<ClayLayout.Col size={3}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Success Color"
 								name="successColor"
 								onColorsChange={setCustomColors}
 								onValueChange={setSuccessColor}
-								showHex={true}
-								title="Success Color"
 								value={successColor}
 							/>
 						</ClayLayout.Col>
 						<ClayLayout.Col size={3}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Warning Color"
 								name="warningColor"
 								onColorsChange={setCustomColors}
 								onValueChange={setWarningColor}
-								showHex={true}
-								title="Warning Color"
 								value={warningColor}
 							/>
 						</ClayLayout.Col>
 						<ClayLayout.Col size={3}>
-							<ClayColorPicker
+							<ValidatedColorPicker
 								colors={customColors}
 								label="Error Color"
 								name="errorColor"
 								onColorsChange={setCustomColors}
 								onValueChange={setErrorColor}
-								showHex={true}
-								title="Error Color"
 								value={errorColor}
 							/>
 						</ClayLayout.Col>
