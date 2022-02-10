@@ -43,6 +43,7 @@ function ValidatedColorPicker(props) {
 				onColorsChange={onColorsChange}
 				onValueChange={validatedValueChange}
 				showHex={true}
+				showPalette={false}
 				title={label}
 				value={color}
 				{...otherProps}
