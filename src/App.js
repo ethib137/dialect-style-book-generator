@@ -369,7 +369,9 @@ function App() {
 									onValueChange={value => {
 										const newAccentColors = [...accentColorsSolid];
 
-										newAccentColors[i] = `#${value}`;
+										if (!(value[0] === '#')) {
+											newAccentColors[i] = `#${value}`;
+										}
 
 										setAccentColorsSolid(newAccentColors);
 									}}
